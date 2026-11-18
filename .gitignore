@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.env.*
+node_modules/
+__pycache__/
+*.log
+
+# working copy of the page (index.html is the published version)
+sem5-exam-board.html

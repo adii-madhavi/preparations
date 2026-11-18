@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Semester V exam board: countdowns, module deadlines and topic-by-topic video links.">
+<style>[hidden]{display:none!important}html,body{margin:0}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Sem V Exam Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Oswald:wght@600&display=swap">
+<style>
+/* Layout: stacked rounded panels on a black ground, alternating dark and white, each with its own "logo · label · 03 / 10" header row.
+   Deliberately one visual world (black / white / orange) in both host themes. */
+:root{
+  color-scheme:dark;
+  --ground:#080808;
+  --d-bg:#131313; --d-raise:#1c1c1c; --d-fg:#f3f3f1; --d-muted:#9b9b97; --d-line:#2a2a2a;
+  --l-bg:#ffffff; --l-raise:#f4f4f2; --l-fg:#111111; --l-muted:#6c6c68; --l-line:#e6e6e3;
+  --orange:#ff4f12; --orange-ink:#ffffff;
+  --ok:#2fb36d; --warn:#f2a516; --bad:#ff5a4f;
+  --display:"Inter Tight","Inter",ui-sans-serif,system-ui,sans-serif;
+  --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mark:"Oswald","Arial Narrow",ui-sans-serif,sans-serif;
+  --r:28px;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--d-fg);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.page{max-width:1240px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.035em;font-weight:600}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
+
+/* panel shells */
+.panel{border-radius:var(--r);padding:clamp(20px,3.6vw,48px);padding-top:0;display:grid;gap:clamp(24px,3.4vw,44px)}
+.dark{--fg:var(--d-fg);--muted:var(--d-muted);--line:var(--d-line);--raise:var(--d-raise);--bgc:var(--d-bg);background:var(--d-bg);color:var(--d-fg)}
+.light{--fg:var(--l-fg);--muted:var(--l-muted);--line:var(--l-line);--raise:var(--l-raise);--bgc:var(--l-bg);background:var(--l-bg);color:var(--l-fg)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding-block:22px;border-bottom:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+.bar .mark{font-family:var(--mark);font-weight:600;font-size:1.35rem;letter-spacing:.02em;color:var(--fg);line-height:1}
+.bar .mark sup{font-size:.5em;margin-left:1px;vertical-align:top;position:relative;top:-2px}
+.bar .idx{justify-self:end;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.bar{grid-template-columns:auto 1fr}.bar .lab{display:none}}
+
+.lead{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px 48px;align-items:start}
+@media (max-width:820px){.lead{grid-template-columns:minmax(0,1fr)}}
+.lead h1{font-size:clamp(2.4rem,6.2vw,4.6rem);line-height:.98}
+.lead h2{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1}
+.lead p{margin:0;color:var(--muted);font-size:1rem;max-width:46ch}
+.eyebrow{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.eyebrow .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:7px;vertical-align:1px}
+.num{font-variant-numeric:tabular-nums}
+
+/* hero */
+.stage{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+@media (max-width:820px){.stage{grid-template-columns:minmax(0,1fr)}}
+.feature{position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);padding:clamp(20px,3vw,36px);min-height:300px;display:grid;align-content:space-between;gap:24px;
+  background:radial-gradient(120% 90% at 85% 0%,#3a3a3a 0%,transparent 55%),radial-gradient(60% 120% at 20% 110%,#2a2a2a 0%,transparent 60%),linear-gradient(160deg,#1b1b1b,#0d0d0d)}
+.feature::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 46px,rgba(255,255,255,.035) 46px 48px);pointer-events:none}
+.feature>*{position:relative;z-index:1}
+.feature .big{font-family:var(--display);font-weight:600;letter-spacing:-.05em;font-size:clamp(4.5rem,13vw,9rem);line-height:.85}
+.feature .big small{font-size:.22em;letter-spacing:-.01em;color:var(--d-muted);margin-left:10px;font-weight:500}
+.feature h3{font-size:clamp(1.4rem,2.6vw,2rem)}
+.side{display:grid;gap:16px;grid-template-rows:auto 1fr}
+.today{border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:10px;background:var(--raise)}
+.today ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.today li{display:flex;gap:10px;align-items:baseline;font-size:.95rem}
+.today li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--muted);transform:translateY(-2px)}
+.today li.x{color:var(--orange);font-weight:600}.today li.x::before{background:var(--orange)}
+.cta{display:grid;align-content:space-between;gap:24px;border-radius:20px;padding:20px;background:var(--orange);color:var(--orange-ink);text-decoration:none;min-height:150px;transition:transform .25s}
+.cta:hover{transform:translateY(-3px)}
+.cta .arr{justify-self:end;width:46px;height:46px;transition:transform .25s}
+.cta:hover .arr{transform:translate(4px,-4px)}
+.cta b{font-family:var(--display);font-size:1.5rem;letter-spacing:-.03em;line-height:1.05;font-weight:600;text-transform:uppercase}
+.trust{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
+
+/* overview cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 18px}
+.card{display:grid;gap:12px;text-decoration:none;color:inherit}
+.thumb{position:relative;aspect-ratio:16/10;max-width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--l-line);background:linear-gradient(180deg,#0b0b0b 0%,#1d1d1d 55%,#f1f1ef 55.2%);padding:16px;display:grid;align-content:space-between;color:#f3f3f1;transition:transform .25s,box-shadow .25s}
+.card:hover .thumb{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(0,0,0,.45)}
+.thumb .d{font-family:var(--display);font-size:2.6rem;font-weight:600;letter-spacing:-.05em;line-height:.9}
+.thumb .d span{font-size:.38em;letter-spacing:0;color:#a9a9a5;margin-left:6px;font-weight:500}
+.thumb .k{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#a9a9a5}
+.thumb .pg{display:flex;gap:10px;align-items:center;color:#111;font-size:.78rem;font-weight:600}
+.meter{flex:1;height:4px;border-radius:9px;background:#dcdcd8;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--orange);transition:width .35s}
+.card .t{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-weight:500}
+
+/* pills */
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:.74rem;font-weight:600;white-space:nowrap;border:1px solid var(--line);color:var(--muted)}
+.pill.o{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}
+.pill.bad{border-color:var(--bad);color:var(--bad)}
+.pill.warn{border-color:var(--warn);color:var(--warn)}
+.pill.ok{border-color:var(--ok);color:var(--ok)}
+
+/* subject panels */
+.facts{display:grid;gap:18px}
+.facts .cd{font-family:var(--display);font-weight:600;letter-spacing:-.05em;font-size:clamp(3.4rem,8vw,5.4rem);line-height:.85}
+.facts .cd small{font-size:.24em;letter-spacing:0;color:var(--muted);margin-left:8px;font-weight:500}
+.facts dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:.92rem}
+.facts dt{color:var(--muted)}.facts dd{margin:0}
+.prog{display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--muted)}
+.prog .meter{background:var(--line)}
+.howto{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 24px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:16px 20px;background:var(--raise)}
+@media (max-width:720px){.howto{grid-template-columns:minmax(0,1fr)}}
+.howto p{margin:0;font-size:.92rem;color:var(--fg)}
+.chs{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+@media (max-width:720px){.chs{justify-content:flex-start}}
+.dateset{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dateset input{font:inherit;font-size:.9rem;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:var(--raise);color:var(--fg);color-scheme:inherit}
+.light .dateset input{color-scheme:light}
+
+.mods{display:grid;gap:14px}
+.mod{border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.mh{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;padding:18px 20px;cursor:pointer;list-style:none}
+.mh::-webkit-details-marker{display:none}
+.mh h3{font-size:clamp(1.1rem,2vw,1.35rem)}
+.mh .r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.mh .chev{width:14px;height:14px;transition:transform .2s;color:var(--muted)}
+details[open]>.mh .chev{transform:rotate(180deg)}
+details[open]>.mh{border-bottom:1px solid var(--line)}
+@media (max-width:620px){.mh{grid-template-columns:minmax(0,1fr)}.mh .r{justify-content:flex-start}}
+.topics{list-style:none;margin:0;padding:0}
+.tp{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:14px 20px;border-top:1px solid var(--line)}
+.tp:first-child{border-top:0}
+.tp input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:2px 0 0;border:1.5px solid var(--muted);border-radius:6px;cursor:pointer;display:grid;place-content:center;transition:background .15s,border-color .15s}
+.tp input::after{content:"";width:10px;height:6px;border-left:2px solid var(--orange-ink);border-bottom:2px solid var(--orange-ink);transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.tp input:checked{background:var(--orange);border-color:var(--orange)}
+.tp input:checked::after{opacity:1}
+.tp label{font-weight:500;cursor:pointer}
+.tp.done label{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--orange)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.vids{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.v{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-size:.8rem;font-weight:500;transition:border-color .15s,background .15s}
+.v:hover{border-color:var(--fg)}
+.v.first{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}
+.v.first:hover{filter:brightness(1.08)}
+.v svg{width:10px;height:10px;flex:none}
+.tip{margin-top:8px;font-size:.84rem;color:var(--muted)}
+.tip b{color:var(--orange);font-weight:600}
+
+/* plan */
+.plan{list-style:none;margin:0;padding:0;display:grid}
+.plan li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.plan li:first-child{border-top:0}
+.plan li.past{color:var(--muted)}
+.plan li.now{background:var(--raise);margin-inline:-16px;padding-inline:16px;border-radius:12px;border-top-color:transparent}
+.plan li.now+li{border-top-color:transparent}
+.plan .dd{font-family:var(--display);font-weight:600;letter-spacing:-.02em}
+.plan .ex{color:var(--orange);font-weight:600}
+@media (max-width:520px){.plan li{grid-template-columns:minmax(0,1fr);gap:4px}}
+.foot{color:var(--d-muted);font-size:.8rem;text-align:center;padding-top:8px}
+
+/* taskbar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ground)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:12px 0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:linear-gradient(var(--ground) 70%,transparent)}
+.nav .in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:rgba(28,28,28,.92);border:1px solid var(--d-line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px -12px rgba(0,0,0,.7)}
+.nav .home{flex:none;font-family:var(--mark);font-weight:600;font-size:1.05rem;letter-spacing:.02em;color:var(--d-fg);text-decoration:none;padding:6px 14px 6px 12px;border-right:1px solid var(--d-line)}
+.nav .links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+.nav .links::-webkit-scrollbar{display:none}
+.nav a.ln{flex:none;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;color:var(--d-muted);text-decoration:none;font-size:.84rem;font-weight:500;white-space:nowrap;transition:background .15s,color .15s}
+.nav a.ln:hover{color:var(--d-fg);background:var(--d-raise)}
+.nav a.ln[aria-current="true"]{background:var(--orange);color:var(--orange-ink)}
+.nav a.ln .when{font-size:.72rem;opacity:.75;font-variant-numeric:tabular-nums}
+.nav a.ln .pip{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5}
+.nav a.ln.soon .pip{background:var(--orange);opacity:1}
+.nav a.ln[aria-current="true"] .pip{background:var(--orange-ink)}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pager a{display:grid;gap:4px;padding:18px 22px;border-radius:20px;background:var(--d-bg);border:1px solid var(--d-line);color:var(--d-fg);text-decoration:none;transition:border-color .15s}
+.pager a:hover{border-color:var(--orange)}
+.pager a span{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--d-muted)}
+.pager a b{font-family:var(--display);font-size:1.25rem;font-weight:600;letter-spacing:-.03em}
+.pager .nx{text-align:right;grid-column:2}
+.pager .nx.solo{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}
+.pager .nx.solo span{color:var(--orange-ink);opacity:.8}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Sections"><div class="in"><a class="home" href="#top">SEM·V</a><div class="links" id="navlinks"></div></div></nav>
+<div class="page" id="page"></div>
+
+<script>
+const CH={
+  gs:"Gate Smashers", gh:"GATEHUB", pce:"Perfect Computer Engineer", fme:"5 Minutes Engineering", neso:"Neso Academy",
+  pc:"PowerCert Animated Videos", pm:"Professor Messer", nc:"NetworkChuck",
+  sq:"StatQuest", cx:"CampusX", kn:"Krish Naik", cb:"codebasics",
+  db:"David Bombal", tcm:"The Cyber Mentor", ata:"Alex The Analyst", gic:"Guy in a Cube"
+};
+const IST="+05:30";
+
+const SUBJECTS=[
+{ id:"scn", short:"Secure Computer Networking", name:"Secure Computer Networking", code:"H24CS01", tag:"Honours · Cyber Security",
+  kind:"Honours ESE · 2 hrs", date:"2026-11-27T14:00:00"+IST, channels:["pc","pm","nc","pce"],
+  hint:"Watch PowerCert first for the picture, then Professor Messer for exam-level detail. This syllabus follows CompTIA Network+ closely, so Messer's Network+ videos match it almost topic for topic.",
+  modules:[
+  {title:"Fundamentals of Computer Networking & Infrastructure",hours:12,due:"2026-11-22",topics:[
+    {t:"Network components: VLANs, WAN, VPNs",q:"VLAN WAN VPN explained",also:"cn"},
+    {t:"Physical topologies: bus, star, ring, mesh, point-to-point, point-to-multipoint, hybrid; topology selection, backbones, segments",q:"network topologies bus star ring mesh",also:"cn"},
+    {t:"OSI reference model, layered approach, advantages, intro to encapsulation",q:"OSI model encapsulation",also:"cn"},
+    {t:"Physical media: coaxial, twisted pair, fibre-optic, serial cables; cable properties",q:"network cables coaxial twisted pair fiber",also:"cn"},
+    {t:"Wiring standards 568A vs 568B; straight-through, crossover, rollover cables",q:"568A 568B straight through crossover rollover cable"},
+    {t:"Hardware loopback, wiring distribution, vertical/horizontal cross-connects, patch panels, verifying wiring",q:"patch panel cross connect structured cabling"},
+    {t:"Software-defined networking (SDN) and network function virtualization (NFV)",q:"SDN NFV explained"}
+  ]},
+  {title:"Ethernet & Network Components",hours:11,due:"2026-11-23",topics:[
+    {t:"Ethernet basics: collision domain, broadcast domain, CSMA/CD, half vs full duplex",q:"collision domain broadcast domain CSMA/CD half full duplex",also:"cn"},
+    {t:"Ethernet at the data link layer: binary ↔ decimal ↔ hex conversion, MAC addressing, frames",q:"binary hexadecimal conversion MAC address ethernet frame"},
+    {t:"Channel bonding, Ethernet at the physical layer (Ethernet standards)",q:"ethernet standards physical layer"},
+    {t:"Devices: hub, repeater, modem, NIC, transceiver, bridge, switch, wireless AP, router, firewall, DHCP server",q:"hub switch router bridge modem difference"},
+    {t:"Specialized devices: multilayer switch, content switch, IDS, load balancer, DNS server, bandwidth shaper, proxy, CSU/DSU",q:"load balancer proxy server multilayer switch IDS"},
+    {t:"Network segmentation",q:"network segmentation"}
+  ]},
+  {title:"Advanced Networking Concepts",hours:11,due:"2026-11-24",topics:[
+    {t:"IP & TCP/IP, data encapsulation, IP terminology, hierarchical IP addressing, broadcast addresses",q:"TCP/IP model IP addressing",also:"cn"},
+    {t:"IPv6 basics",q:"IPv6 explained",also:"cn"},
+    {t:"Subnetting basics, subnet masks, CIDR, subnetting Class C and Class B",q:"subnetting CIDR class C class B",also:"cn",tip:"Do 5 practice questions here. The same skill wins marks in Computer Network on 30 Nov."},
+    {t:"Troubleshooting IP addressing; NAT",q:"NAT network address translation",also:"cn"},
+    {t:"IP routing: static vs dynamic, distance-vector, link-state, IPv6 routing protocols",q:"static dynamic routing distance vector link state",also:"cn"},
+    {t:"Switching & VLANs: STP, VLANs, switch security",q:"spanning tree protocol VLAN"},
+    {t:"Wireless: 802.11 standards, wireless components, installing a WLAN, wireless security",q:"802.11 wireless standards WPA security"}
+  ]},
+  {title:"Access Control, Threat Mitigation & WAN Support",hours:11,due:"2026-11-25",topics:[
+    {t:"Security filtering, user accounts & password security",q:"access control password security"},
+    {t:"Authentication: PKI, Kerberos, AAA, NAC, CHAP",q:"PKI Kerberos AAA CHAP authentication"},
+    {t:"Threats & mitigation; physical/hardware security; policies & procedures",q:"network security threats mitigation"},
+    {t:"Firewalls, scanning services, IDS/IPS, VPN concentrators",q:"firewall IDS IPS VPN"},
+    {t:"WAN: T-series connections, transmission media, broadband services, WAN protocols",q:"WAN technologies T1 T3 broadband"},
+    {t:"CLI tools: traceroute, ipconfig/ifconfig, ping, arp, nslookup, mtr, route, nbtstat, netstat",q:"network troubleshooting commands ping traceroute nslookup netstat"},
+    {t:"Network scanners, hardware tools, troubleshooting steps, monitoring & documentation",q:"network troubleshooting methodology tools"}
+  ]}]},
+
+{ id:"cd", short:"Compiler Design", name:"Compiler Design", code:"CMCOR1PC302", tag:"ESE · Theory",
+  kind:"ESE theory · 60 marks · 2 hrs", date:"2026-11-28T14:00:00"+IST, channels:["gs","gh","pce","neso","fme"],
+  hint:"The exam is the day after Honours, so finish all four modules by 21 Nov. Parsing tables (LL(1), SLR, CLR, LALR) and three-address code carry the big marks. Solve at least two of each.",
+  modules:[
+  {title:"Compiler Basics & Top-Down Parsing",hours:8,due:"2026-11-18",topics:[
+    {t:"System software: goals, system vs application programs, assembler, compiler, interpreter",q:"compiler vs interpreter vs assembler system software"},
+    {t:"Introduction to compilers, phases of a compiler",q:"phases of compiler"},
+    {t:"Lexical analysis: role of finite automata",q:"lexical analysis finite automata"},
+    {t:"Lexical analyzer: tokens, specification & recognition, LEX/FLEX, symbol table",q:"lexical analyzer tokens LEX symbol table"},
+    {t:"Types of parsers; top-down: recursive descent",q:"recursive descent parser"},
+    {t:"Predictive LL(1) parser: FIRST & FOLLOW, LL(1) table, checking if a grammar is LL(1)",q:"LL(1) parser first follow parsing table",tip:"Sure-shot numerical. Practise removing left recursion and left factoring first."}
+  ]},
+  {title:"Bottom-Up Parsing",hours:8,due:"2026-11-20",topics:[
+    {t:"Bottom-up parsing: handles, handle pruning",q:"bottom up parsing handle pruning"},
+    {t:"Operator precedence parser",q:"operator precedence parser"},
+    {t:"LR parsers overview, shift-reduce parser",q:"shift reduce parser"},
+    {t:"LR(0) items & SLR parsing table construction",q:"SLR parser LR(0) items parsing table"},
+    {t:"CLR (LR(1)) parsing table",q:"CLR parser LR(1)"},
+    {t:"LALR parsing table; comparing SLR, CLR and LALR",q:"LALR parser",tip:"Make one comparison table of SLR vs CLR vs LALR. It is a common 5-mark question."}
+  ]},
+  {title:"Intermediate Code Generation",hours:7,due:"2026-11-20",topics:[
+    {t:"Semantic analysis, syntax-directed definitions (SDDs), synthesized & inherited attributes",q:"syntax directed definition synthesized inherited attributes"},
+    {t:"Evaluation order for SDDs: S-attributed & L-attributed definitions",q:"S attributed L attributed definition"},
+    {t:"Intermediate code forms: syntax tree, postfix notation, DAG",q:"DAG syntax tree intermediate code"},
+    {t:"Three-address code: quadruples, triples, indirect triples",q:"three address code quadruples triples indirect triples",tip:"Practise converting a = b * -c + b * -c into all three forms."}
+  ]},
+  {title:"Code Generation",hours:7,due:"2026-11-21",topics:[
+    {t:"Code optimization: need, sources, machine-dependent vs machine-independent techniques",q:"code optimization techniques machine independent"},
+    {t:"Basic blocks and flow graphs",q:"basic blocks flow graph"},
+    {t:"Liveness analysis",q:"liveness analysis compiler"},
+    {t:"Code generator design issues; code generation algorithm",q:"code generation issues simple code generator algorithm"}
+  ]}]},
+
+{ id:"cn", short:"Computer Network", name:"Computer Network", code:"CMCOR1PC303", tag:"ESE · Theory",
+  kind:"ESE theory · 60 marks · 2 hrs", date:"2026-11-30T14:00:00"+IST, channels:["gs","gh","pce","neso","fme"],
+  hint:"Most of modules 1–3 overlap with your Honours paper, so you study them once (22–24 Nov) for both exams. Keep 29 Nov for numericals: Hamming code, CRC, subnetting, Dijkstra, distance vector.",
+  modules:[
+  {title:"Introduction to Networking",hours:7,due:"2026-11-22",topics:[
+    {t:"Introduction, network applications, software & hardware",q:"computer networks introduction"},
+    {t:"Network topology and devices",q:"network topology devices"},
+    {t:"Protocol hierarchies and design issues for the layers",q:"protocol hierarchies design issues layers"},
+    {t:"Connection-oriented vs connectionless services",q:"connection oriented vs connectionless"},
+    {t:"Reference models: OSI and TCP/IP (comparison)",q:"OSI vs TCP/IP model"},
+    {t:"Physical layer guided media: twisted pair, coaxial, fibre optics",q:"guided transmission media twisted pair coaxial fiber"}
+  ]},
+  {title:"Data Link Layer",hours:8,due:"2026-11-23",topics:[
+    {t:"Services of the data link layer; design issues: framing, error control, flow control",q:"data link layer design issues framing"},
+    {t:"Error detection and correction",q:"error detection and correction"},
+    {t:"Hamming code",q:"hamming code",tip:"Numerical: find and correct the error bit."},
+    {t:"CRC and checksum",q:"CRC cyclic redundancy check checksum",tip:"Numerical: divide using the generator polynomial."},
+    {t:"Elementary data link protocols; Stop-and-Wait; Sliding Window (Go-Back-N)",q:"stop and wait go back N sliding window"},
+    {t:"Selective Repeat protocol",q:"selective repeat protocol"},
+    {t:"MAC sublayer: channel allocation problem; ALOHA (pure & slotted)",q:"pure aloha slotted aloha"},
+    {t:"CSMA/CD",q:"CSMA CD"}
+  ]},
+  {title:"Network Layer",hours:8,due:"2026-11-24",topics:[
+    {t:"Network layer design issues; unicast, multicast, broadcast",q:"network layer design issues unicast multicast broadcast"},
+    {t:"IPv4 addressing: classful",q:"IPv4 classful addressing"},
+    {t:"IPv4 addressing: classless; subnetting & supernetting problems",q:"subnetting supernetting classless addressing",tip:"Same skill as Honours module 3."},
+    {t:"Network Address Translation (NAT)",q:"NAT network address translation"},
+    {t:"IPv6 (header, comparison with IPv4)",q:"IPv6 header IPv4 vs IPv6"},
+    {t:"Shortest path routing (Dijkstra)",q:"dijkstra shortest path routing"},
+    {t:"Link state routing",q:"link state routing"},
+    {t:"Distance vector routing",q:"distance vector routing",tip:"Numerical: update routing tables after one exchange."},
+    {t:"ARP, RARP, ICMP, IGMP",q:"ARP RARP ICMP IGMP"},
+    {t:"Congestion control: open-loop and closed-loop (leaky bucket, token bucket)",q:"congestion control leaky bucket token bucket"}
+  ]},
+  {title:"Transport & Application Layer",hours:7,due:"2026-11-28",topics:[
+    {t:"Transport service primitives",q:"transport service primitives"},
+    {t:"UDP vs TCP (header formats)",q:"TCP vs UDP header"},
+    {t:"Connection management: 3-way handshake",q:"TCP three way handshake connection management"},
+    {t:"TCP timers",q:"TCP timers"},
+    {t:"DNS: name space, resource records, types of name server",q:"DNS domain name system"},
+    {t:"HTTP, SMTP",q:"HTTP SMTP protocol"},
+    {t:"Telnet, FTP",q:"Telnet FTP protocol"}
+  ]}]},
+
+{ id:"ml", short:"Machine Learning", name:"Machine Learning", code:"CMCOR1PC301", tag:"ESEP · Practical",
+  kind:"ESEP practical · 30 marks", date:null, practical:true, channels:["sq","cx","kn","fme"],
+  hint:"You get one experiment to code and explain. Watch StatQuest for the idea, then CampusX or Krish Naik for the Python code, and make sure you can run it yourself.",
+  modules:[
+  {title:"Foundations & Regression · Exp 1–3",topics:[
+    {t:"ML basics: supervised, unsupervised, reinforcement; steps to build an ML application",q:"machine learning types supervised unsupervised"},
+    {t:"Training vs generalization error, overfitting & underfitting, bias–variance trade-off",q:"bias variance overfitting underfitting",tip:"<b>Viva favourite.</b>"},
+    {t:"Exp 1–2 · Simple & multiple linear regression",q:"linear regression python sklearn"},
+    {t:"Exp 3 · Multivariate linear regression",q:"multivariate linear regression python"}
+  ]},
+  {title:"Decision Trees & Ensembles · Exp 4–7",topics:[
+    {t:"Exp 4 · Decision tree using Gini index",q:"decision tree gini index"},
+    {t:"Exp 5 · CART for classification & regression",q:"CART classification and regression tree python"},
+    {t:"Confusion matrix, kappa, sensitivity, specificity, precision, recall, F-measure, ROC & AUC",q:"confusion matrix precision recall ROC AUC",tip:"<b>Viva favourite.</b>"},
+    {t:"Exp 6 · Ensembles: K-fold CV, bagging, boosting, stumping, XGBoost",q:"bagging boosting xgboost"},
+    {t:"Exp 7 · Random forest",q:"random forest python"}
+  ]},
+  {title:"Classification & Clustering · Exp 8–14",topics:[
+    {t:"Exp 8 · Logistic regression",q:"logistic regression python"},
+    {t:"Exp 9 · SVM: margins, linear & non-linear, kernel trick",q:"support vector machine kernel trick"},
+    {t:"Exp 10 · Support vector regression",q:"support vector regression python"},
+    {t:"Exp 11 · Multiclass: one-vs-all, one-vs-one",q:"one vs rest one vs one multiclass"},
+    {t:"Exp 12 · Graph-based clustering (minimal spanning tree)",q:"graph based clustering minimum spanning tree"},
+    {t:"Exp 13 · Model-based clustering: Expectation-Maximization",q:"expectation maximization gaussian mixture"},
+    {t:"Exp 14 · Density-based clustering: DBSCAN",q:"DBSCAN clustering python"}
+  ]},
+  {title:"Dimensionality Reduction · Exp 15–18",topics:[
+    {t:"Exp 15 · PCA",q:"PCA principal component analysis python"},
+    {t:"Exp 16 · SVD",q:"singular value decomposition"},
+    {t:"Exp 17 · LDA",q:"linear discriminant analysis"},
+    {t:"Intro to deep learning; ML vs DL",q:"deep learning vs machine learning"},
+    {t:"Exp 18 · Micro-project: be ready to explain your dataset, algorithm and results",q:"machine learning mini project end to end"}
+  ]}]},
+
+{ id:"nlp", short:"Natural Language Processing", name:"Natural Language Processing", code:"CMCOR1PE301.1", tag:"ESEP · Practical",
+  kind:"ESEP practical · 15 marks", date:null, practical:true, channels:["cb","kn","cx","fme"],
+  hint:"Every experiment is a short Python notebook (NLTK, spaCy, scikit-learn, Hugging Face). Watch the idea, then type the code once yourself. In the practical you'll be asked to run one and explain the output.",
+  modules:[
+  {title:"Text Preprocessing & Features · Exp 1–6",topics:[
+    {t:"Exp 1 · Text cleaning",q:"NLP text cleaning python"},
+    {t:"Exp 2 · Text normalization: stemming, lemmatization, spelling correction",q:"stemming vs lemmatization NLTK"},
+    {t:"Exp 3 · Subword tokenization: BPE, WordPiece, SentencePiece",q:"BPE WordPiece subword tokenization"},
+    {t:"Exp 4 · Vectorization: Bag-of-Words, TF-IDF, hashing",q:"bag of words TF-IDF python"},
+    {t:"Exp 5 · Word embeddings: Word2Vec, GloVe, FastText",q:"word2vec glove fasttext"},
+    {t:"Exp 6 · N-gram language model",q:"n-gram language model"}
+  ]},
+  {title:"Syntax & Semantics · Exp 7–10",topics:[
+    {t:"Exp 7 · POS tagging: rule-based, statistical, neural",q:"POS tagging NLP"},
+    {t:"Exp 8 · Dependency & constituency parsing",q:"dependency parsing constituency parsing spacy"},
+    {t:"Exp 9 · Named Entity Recognition (NER)",q:"named entity recognition spacy"},
+    {t:"Exp 10 · Feature engineering for NLP",q:"feature engineering NLP"}
+  ]},
+  {title:"Classification & Analysis · Exp 11–14",topics:[
+    {t:"Exp 11 · Text classification: Naive Bayes, Logistic Regression, SVM",q:"text classification naive bayes python"},
+    {t:"Exp 12 · Sentiment analysis: ML-based & lexicon-based",q:"sentiment analysis python VADER"},
+    {t:"Exp 13 · Topic modelling: LDA / NMF",q:"topic modeling LDA python"},
+    {t:"Exp 14 · Information retrieval with the vector space model",q:"vector space model information retrieval cosine similarity"}
+  ]},
+  {title:"Generation & Applications · Exp 15–19",topics:[
+    {t:"Exp 15 · Text summarization: extractive & abstractive",q:"text summarization extractive abstractive python"},
+    {t:"Exp 16 · Machine translation: rule-based, statistical, neural",q:"machine translation NLP"},
+    {t:"Exp 17 · Conversational agent (chatbot development)",q:"chatbot python NLP"},
+    {t:"Exp 18 · Coreference resolution",q:"coreference resolution NLP"},
+    {t:"Exp 19 · Text generation using language models",q:"text generation hugging face GPT2"}
+  ]}]},
+
+{ id:"eh", short:"Ethical Hacking", name:"Ethical Hacking", code:"CMOR1PE302.3", tag:"ESEP · Practical",
+  kind:"ESEP practical · 15 marks", date:null, practical:true, channels:["nc","db","tcm","pce"],
+  hint:"Run every experiment against your own lab only (Kali + Metasploitable / DVWA in VirtualBox). In the practical, explain each tool's command and its output, and for the last two experiments the legal side too.",
+  modules:[
+  {title:"Recon & Scanning · Exp 1–3, 10",topics:[
+    {t:"Exp 1 · Live host discovery & port enumeration with Nmap",q:"nmap tutorial host discovery port scan"},
+    {t:"Exp 2 · Public Wi-Fi traffic interception & analysis with Wireshark",q:"wireshark tutorial packet analysis"},
+    {t:"Exp 3 · Port scanning, service enumeration & vulnerability assessment",q:"service enumeration vulnerability scanning nmap scripts"},
+    {t:"Exp 10 · Google Dorking for vulnerability discovery",q:"google dorking"}
+  ]},
+  {title:"Web Attacks · Exp 4, 5, 9",topics:[
+    {t:"Exp 4 · SQL injection on DVWA / Burp Suite",q:"SQL injection DVWA burp suite"},
+    {t:"Exp 5 · Cross-Site Scripting (XSS)",q:"cross site scripting XSS DVWA"},
+    {t:"Exp 9 · Web server hacking & exploitation",q:"web server hacking metasploitable"}
+  ]},
+  {title:"System Attacks & Forensics · Exp 6–8",topics:[
+    {t:"Exp 6 · Buffer overflow exploitation & analysis",q:"buffer overflow explained"},
+    {t:"Exp 7 · Password cracking from hashes",q:"password cracking hashcat john the ripper"},
+    {t:"Exp 8 · Windows registry analysis",q:"windows registry forensics"}
+  ]},
+  {title:"Law & Incident Response · Exp 11–12",topics:[
+    {t:"Exp 11 · Case study of cyber laws (IT Act 2000)",q:"IT Act 2000 cyber law India"},
+    {t:"Exp 12 · Simulated incident response with legal & ethical considerations",q:"incident response process"}
+  ]}]},
+
+{ id:"bi", short:"Business Intelligence", name:"Business Intelligence Lab", code:"CMLOR1VS301", tag:"ESEP · Skill lab",
+  kind:"ESEP practical · 15 marks", date:null, practical:true, channels:["ata","cb","gic","kn"],
+  hint:"Half Tableau, half Power BI. Download a sample sales dataset and build each experiment along with the video. The practical asks you to build a dashboard live and explain your DAX or calculated fields.",
+  modules:[
+  {title:"Tableau · Exp 1–3",topics:[
+    {t:"Exp 1 · Connect Tableau to Excel, CSV & databases; data preparation",q:"Tableau data source connect excel csv data preparation"},
+    {t:"Exp 2 · Basic & advanced Tableau visualizations, dashboard formatting & design",q:"Tableau dashboard tutorial"},
+    {t:"Exp 3 · Calculated fields, table calculations, LOD expressions",q:"Tableau calculated fields LOD expressions"}
+  ]},
+  {title:"Power BI Core · Exp 4–6",topics:[
+    {t:"Exp 4 · Data integration from multiple sources with Power Query (transform & clean)",q:"Power BI Power Query tutorial"},
+    {t:"Exp 5 · Fundamental & custom visuals: formatting, styling, marketplace visuals",q:"Power BI custom visuals formatting"},
+    {t:"Exp 6 · Maps, treemaps, heatmaps & dual-axis charts",q:"Power BI heatmap treemap dual axis chart"}
+  ]},
+  {title:"Power BI Advanced · Exp 7–10",topics:[
+    {t:"Exp 7 · Dashboard best practices & data storytelling",q:"Power BI dashboard design best practices"},
+    {t:"Exp 8 · DAX time intelligence (YTD, MTD, previous year)",q:"Power BI DAX time intelligence",tip:"<b>Viva favourite:</b> CALCULATE, TOTALYTD, SAMEPERIODLASTYEAR."},
+    {t:"Exp 9 · End-to-end dashboard on a real dataset (sales, healthcare, finance or smart city)",q:"Power BI end to end project"},
+    {t:"Exp 10 · Present your micro-project dashboard",q:"Power BI project presentation"}
+  ]}]}
+];
+
+const PLAN=[
+ ["2026-11-18",[["CD M1 · Compiler basics, LL(1)"]]],
+ ["2026-11-19",[["CD M2 · Bottom-up, operator precedence, SLR"]]],
+ ["2026-11-20",[["CD M2 · CLR, LALR"],["CD M3 · SDD, three-address code"]]],
+ ["2026-11-21",[["CD M4 · Optimization, code generation"],["Solve 2 parsing-table numericals"]]],
+ ["2026-11-22",[["SCN M1 · Infrastructure, cabling"],["CN M1 · Intro, OSI/TCP-IP, media"]]],
+ ["2026-11-23",[["SCN M2 · Ethernet, devices"],["CN M2 · Data link layer"]]],
+ ["2026-11-24",[["SCN M3 · IP, subnetting, routing, VLANs"],["CN M3 · Network layer"]]],
+ ["2026-11-25",[["SCN M4 · Security, WAN, CLI tools"]]],
+ ["2026-11-26",[["SCN full revision"],["CD quick revision of parsing"]]],
+ ["2026-11-27",[["Secure Computer Networking exam, 2 pm",1],["Evening: CD tables & 3AC revision"]]],
+ ["2026-11-28",[["Compiler Design exam, 2 pm",1],["Evening: CN M4 · Transport & application"]]],
+ ["2026-11-29",[["CN revision + numericals: Hamming, CRC, subnetting, routing"]]],
+ ["2026-11-30",[["Computer Network exam, 2 pm",1],["After this: practicals. Set each practical's date in its panel."]]]
+];
+
+/* per-browser convenience storage */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+             set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let done=store.get("semv-done",{});
+let pdates=store.get("semv-pdates",{});
+{const old=store.get("semv-ml-date",null); if(old&&!pdates.ml){pdates.ml=old}}
+
+const todayKey=()=>new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Kolkata"});
+const ymd=d=>new Date(d).toLocaleDateString("en-CA",{timeZone:"Asia/Kolkata"});
+const fmt=(d,o)=>new Date(d).toLocaleDateString("en-IN",Object.assign({weekday:"short",day:"numeric",month:"short",timeZone:"Asia/Kolkata"},o||{}));
+const dayDiff=(a,b)=>Math.round((Date.parse(a+"T00:00:00Z")-Date.parse(b+"T00:00:00Z"))/864e5);
+const yt=(ch,q)=>"https://www.youtube.com/results?search_query="+encodeURIComponent(CH[ch]+" "+q);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const PLAY='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1v8l7-4z" fill="currentColor"/></svg>';
+const ARROW='<svg class="arr" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 36 36 12M16 12h20v20"/></svg>';
+const CHEV='<svg class="chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 5 4 4 4-4"/></svg>';
+
+const sDate=s=>s.practical?(pdates[s.id]?pdates[s.id]+"T09:00:00"+IST:null):s.date;
+const ids=s=>s.modules.flatMap((m,mi)=>m.topics.map((_,ti)=>`${s.id}-${mi}-${ti}`));
+const pct=s=>{const a=ids(s);return Math.round(a.filter(i=>done[i]).length/a.length*100)};
+function cd(date){
+  if(!date) return {n:"—",u:"date not set",lab:"Date TBA",cls:""};
+  const d=dayDiff(ymd(date),todayKey());
+  if(d<0) return {n:"✓",u:"done",lab:"Done",cls:"ok"};
+  if(d===0) return {n:"0",u:"today",lab:"Today",cls:"bad"};
+  if(d===1) return {n:"1",u:"day left",lab:"Tomorrow",cls:"bad"};
+  return {n:String(d),u:"days left",lab:`In ${d} days`,cls:d<=4?"warn":""};
+}
+function due(s,m,mi){
+  if(!s.practical) return m.due;
+  if(!pdates[s.id]) return null;
+  const b=new Date(pdates[s.id]+"T00:00:00Z"); b.setUTCDate(b.getUTCDate()-(s.modules.length-mi)); return b.toISOString().slice(0,10);
+}
+function dueSt(d,complete){
+  if(complete) return {cls:"ok",txt:"Done"};
+  if(!d) return {cls:"",txt:"Set practical date"};
+  const x=dayDiff(d,todayKey());
+  if(x<0) return {cls:"bad",txt:"Overdue"};
+  if(x===0) return {cls:"warn",txt:"Finish today"};
+  return {cls:"",txt:"Finish by "+fmt(d+"T12:00:00"+IST,{weekday:undefined})};
+}
+
+const ORDERED=()=>[...SUBJECTS].sort((a,b)=>(sDate(a)?Date.parse(sDate(a)):9e15)-(sDate(b)?Date.parse(sDate(b)):9e15));
+const TOTAL=SUBJECTS.length+3;
+const bar=(i,label)=>`<header class="bar"><span class="mark">SEM·V<sup>°</sup></span><span class="lab">${esc(label)}</span><span class="idx num">${String(i).padStart(2,"0")} / ${String(TOTAL).padStart(2,"0")}</span></header>`;
+
+function hero(){
+  const k=todayKey();
+  const next=ORDERED().find(s=>sDate(s)&&dayDiff(ymd(sDate(s)),k)>=0);
+  const c=next?cd(sDate(next)):null;
+  const row=PLAN.find(p=>p[0]===k);
+  const items=row?row[1].map(([t,ex])=>`<li class="${ex?"x":""}">${esc(t)}</li>`).join(""):`<li>Nothing planned for today. Pick a practical below.</li>`;
+  const firstTarget=next?next.id:"ml";
+  return `<section class="panel dark" id="top">${bar(1,"T.Y.B.Tech Computer · Winter 2026")}
+    <div class="lead"><h1>Seven papers.<br>One plan, no noise.</h1>
+      <p>Your Semester V board: two theory exams, one Honours paper and four practicals. Every syllabus topic has its videos and a finish-by date, and the countdowns update every day.</p></div>
+    <div class="stage">
+      <div class="feature">
+        <div class="eyebrow"><span class="dot"></span>Next exam</div>
+        ${next?`<div><div class="big num">${c.n}<small>${esc(c.u)}</small></div>
+          <h3 style="margin-top:14px">${esc(next.name)}</h3>
+          <div class="eyebrow" style="margin-top:6px">${esc(fmt(sDate(next)))}${next.practical?"":" · 2:00–4:00 pm"} · ${esc(next.code)}</div></div>`
+          :`<h3>All dated exams are done. Set your practical dates below.</h3>`}
+        <div class="trust"><span>Report 20 min early</span><span>No phones in the hall</span><span>Changes posted on the college site</span></div>
+      </div>
+      <div class="side">
+        <div class="today"><div class="eyebrow">Today's target · ${esc(fmt(new Date()))}</div><ul>${items}</ul></div>
+        <a class="cta" href="#${firstTarget}"><span>${ARROW}</span><b>Start the next<br>paper</b></a>
+      </div>
+    </div>
+  </section>`;
+}
+
+function overview(){
+  const list=ORDERED();
+  return `<section class="panel light" id="papers">${bar(2,"All papers")}
+    <div class="lead"><h2>${SUBJECTS.length} papers, ${SUBJECTS.reduce((n,s)=>n+ids(s).length,0)} topics</h2>
+      <p>Theory exams are fixed by the timetable. Practical dates aren't announced yet, so set each one in its panel and its module deadlines fill in.</p></div>
+    <div class="grid">${list.map(s=>{const d=sDate(s),c=cd(d),p=pct(s);
+      return `<a class="card" href="#${s.id}">
+        <div class="thumb"><div><div class="k">${esc(s.tag)}</div>
+          <div class="d num" style="margin-top:8px">${d?esc(fmt(d,{weekday:undefined,month:"short"})):"TBA"}<span>${d&&!s.practical?"2 pm":""}</span></div></div>
+          <div class="pg"><span class="meter"><i style="width:${p}%"></i></span><span class="num">${p}%</span></div></div>
+        <div class="t"><span>${esc(s.short)}</span><span class="pill ${c.cls}">${esc(c.lab)}</span></div></a>`}).join("")}
+    </div></section>`;
+}
+
+function subject(s,i,theme){
+  const d=sDate(s),c=cd(d),p=pct(s),a=ids(s),n=a.filter(x=>done[x]).length;
+  return `<section class="panel ${theme}" id="${s.id}">${bar(i,s.tag)}
+    <div class="lead">
+      <div style="display:grid;gap:14px"><div class="eyebrow"><span class="dot"></span>${esc(s.code)}</div><h2>${esc(s.name)}</h2>
+        <div class="prog"><span class="meter"><i data-meter="${s.id}" style="width:${p}%"></i></span><span class="num" data-prog="${s.id}">${n}/${a.length} topics</span></div></div>
+      <div class="facts"><div class="cd num">${c.n}<small>${esc(c.u)}</small></div>
+        <dl><dt>Exam</dt><dd>${d?esc(fmt(d,{weekday:"long",month:"long"}))+(s.practical?"":", 2:00–4:00 pm"):"Not announced yet"}</dd>
+          <dt>Type</dt><dd>${esc(s.kind)}</dd><dt>Portion</dt><dd>${s.practical?"Full experiment list + viva":"All "+s.modules.length+" modules"}</dd></dl>
+        ${s.practical?`<div class="dateset"><label class="eyebrow" for="pd-${s.id}">Practical date</label><input type="date" id="pd-${s.id}" data-pd="${s.id}" value="${pdates[s.id]||""}" min="2026-11-01" max="2027-01-31"></div>`:""}
+      </div>
+    </div>
+    <div class="howto"><p>${esc(s.hint)}</p><div class="chs">${s.channels.map((ch,k)=>`<span class="pill ${k===0?"o":""}">${esc(CH[ch])}${k===0?" · start here":""}</span>`).join("")}</div></div>
+    <div class="mods">${s.modules.map((m,mi)=>{
+      const mid=m.topics.map((_,ti)=>`${s.id}-${mi}-${ti}`),k=mid.filter(x=>done[x]).length,st=dueSt(due(s,m,mi),k===mid.length);
+      const open=k<mid.length;
+      return `<details class="mod" ${open?"open":""}><summary class="mh">
+          <div style="display:grid;gap:4px;min-width:0"><span class="eyebrow">${s.practical?"Group":"Module"} ${mi+1}${m.hours?" · "+m.hours+" hrs":""}</span><h3>${esc(m.title)}</h3></div>
+          <div class="r"><span class="pill num" data-cnt="${s.id}-${mi}">${k}/${mid.length}</span><span class="pill ${st.cls}" data-due="${s.id}-${mi}">${esc(st.txt)}</span>${CHEV}</div>
+        </summary>
+        <ul class="topics">${m.topics.map((t,ti)=>{const id=`${s.id}-${mi}-${ti}`;return `<li class="tp ${done[id]?"done":""}">
+          <input type="checkbox" id="c-${id}" data-id="${id}" ${done[id]?"checked":""}>
+          <div style="min-width:0"><label for="c-${id}">${esc(t.t)}</label>
+            ${t.also?`<div class="tags"><span class="pill">Also in Computer Network</span></div>`:""}
+            <div class="vids">${s.channels.map((ch,k2)=>`<a class="v ${k2===0?"first":""}" href="${yt(ch,t.q)}" target="_blank" rel="noopener">${PLAY}${esc(CH[ch])}</a>`).join("")}</div>
+            ${t.tip?`<div class="tip">${t.tip.startsWith("<b>")?t.tip:esc(t.tip)}</div>`:""}
+          </div></li>`}).join("")}</ul></details>`}).join("")}
+    </div></section>`;
+}
+
+function plan(i,theme){
+  const k=todayKey();
+  return `<section class="panel ${theme}" id="plan">${bar(i,"Day by day")}
+    <div class="lead"><h2>18 Nov → 30 Nov</h2><p>Compiler Design comes first because its exam is the day after Honours. Honours and Computer Network share modules 1–3, so they're studied together on 22–24 Nov.</p></div>
+    <ul class="plan">${PLAN.map(([d,items])=>`<li class="${d===k?"now":d<k?"past":""}"><span class="dd">${esc(fmt(d+"T12:00:00"+IST))}</span>
+      <span>${items.map(([t,ex])=>ex?`<span class="ex">${esc(t)}</span>`:esc(t)).join(" · ")}</span></li>`).join("")}</ul></section>`;
+}
+
+function render(){
+  const y=window.scrollY;
+  const order=["scn","cd","cn","ml","nlp","eh","bi"].map(id=>SUBJECTS.find(s=>s.id===id));
+  let html=hero()+overview(), i=3;
+  order.forEach((s,k)=>{html+=subject(s,i++,k%2===0?"dark":"light")});
+  html+=plan(i,"dark");
+  html+=`<nav class="pager" id="pager" aria-label="Previous and next page"></nav>`;
+  html+=`<p class="foot">Built from your Sem V scheme (batch 2024–28) and the Cyber Security Honours scheme. Video buttons open that channel's YouTube results for the topic. Ticks and dates are saved in this browser only.</p>`;
+  document.getElementById("page").innerHTML=html;
+  renderNav();
+  bind();
+  route(true);
+  window.scrollTo(0,y);
+}
+
+const PAGES=["top","papers","scn","cd","cn","ml","nlp","eh","bi","plan"];
+const PAGENAMES={top:"Home",papers:"All papers",plan:"Day-by-day plan"};
+function route(keepScroll){
+  const h=location.hash.slice(1), cur=PAGES.includes(h)?h:"top";
+  document.querySelectorAll(".panel").forEach(p=>{p.hidden=p.id!==cur});
+  document.querySelectorAll("#navlinks a").forEach(a=>a.setAttribute("aria-current",a.dataset.nav===cur?"true":"false"));
+  const ln=document.querySelector(`#navlinks a[data-nav="${cur}"]`);
+  if(ln){const box=ln.parentElement; box.scrollLeft=ln.offsetLeft-box.clientWidth/2+ln.clientWidth/2}
+  const i=PAGES.indexOf(cur), nm=id=>{const s=SUBJECTS.find(x=>x.id===id);return s?s.name:PAGENAMES[id]};
+  const prev=PAGES[i-1], next=PAGES[i+1];
+  document.getElementById("pager").innerHTML=
+    (prev?`<a href="#${prev}"><span>← Previous</span><b>${esc(nm(prev))}</b></a>`:"")+
+    (next?`<a class="nx${prev?"":" solo"}" href="#${next}"><span>Next →</span><b>${esc(nm(next))}</b></a>`:"");
+  document.title=cur==="top"?"Sem V Exam Board":nm(cur)+" · Sem V Exam Board";
+  if(!keepScroll) window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",()=>route(false));
+
+const NAVNAMES={scn:"Honours",cd:"Compiler",cn:"Network",ml:"ML",nlp:"NLP",eh:"Hacking",bi:"Power BI"};
+function renderNav(){
+  const k=todayKey();
+  const items=[["top","Home"],["papers","All papers"],...["scn","cd","cn","ml","nlp","eh","bi"].map(id=>[id,NAVNAMES[id]]),["plan","Plan"]];
+  document.getElementById("navlinks").innerHTML=items.map(([id,label])=>{
+    const s=SUBJECTS.find(x=>x.id===id); let when="",soon=false;
+    if(s){const d=sDate(s); if(d){const x=dayDiff(ymd(d),k); when=x<0?"✓":x===0?"today":x+"d"; soon=x>=0&&x<=4}else when="TBA"}
+    return `<a class="ln${soon?" soon":""}" href="#${id}" data-nav="${id}">${s?'<span class="pip"></span>':""}${esc(label)}${when?`<span class="when">${when}</span>`:""}</a>`}).join("");
+}
+
+function bind(){
+  document.querySelectorAll("input[data-id]").forEach(cb=>cb.addEventListener("change",()=>{
+    const id=cb.dataset.id; if(cb.checked) done[id]=1; else delete done[id]; store.set("semv-done",done);
+    cb.closest(".tp").classList.toggle("done",cb.checked);
+    const [sid,mi]=id.split("-"); const s=SUBJECTS.find(x=>x.id===sid), m=s.modules[+mi];
+    const mid=m.topics.map((_,ti)=>`${sid}-${mi}-${ti}`), k=mid.filter(x=>done[x]).length;
+    document.querySelector(`[data-cnt="${sid}-${mi}"]`).textContent=`${k}/${mid.length}`;
+    const st=dueSt(due(s,m,+mi),k===mid.length), el=document.querySelector(`[data-due="${sid}-${mi}"]`); el.className="pill "+st.cls; el.textContent=st.txt;
+    const a=ids(s), n=a.filter(x=>done[x]).length;
+    document.querySelector(`[data-meter="${sid}"]`).style.width=pct(s)+"%";
+    document.querySelector(`[data-prog="${sid}"]`).textContent=`${n}/${a.length} topics`;
+    const card=document.querySelector(`.card[href="#${sid}"]`);
+    if(card){card.querySelector(".meter i").style.width=pct(s)+"%";card.querySelector(".pg .num").textContent=pct(s)+"%"}
+  }));
+  document.querySelectorAll("input[data-pd]").forEach(inp=>inp.addEventListener("change",()=>{
+    if(inp.value) pdates[inp.dataset.pd]=inp.value; else delete pdates[inp.dataset.pd];
+    store.set("semv-pdates",pdates); render();
+  }));
+}
+
+render();
+</script>
+
+</body>
+</html>
