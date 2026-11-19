@@ -107,9 +107,6 @@ button{font:inherit;color:inherit}
 .howto p{margin:0;font-size:.92rem;color:var(--fg)}
 .chs{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
 @media (max-width:720px){.chs{justify-content:flex-start}}
-.dateset{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.dateset input{font:inherit;font-size:.9rem;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:var(--raise);color:var(--fg);color-scheme:inherit}
-.light .dateset input{color-scheme:light}
 
 .mods{display:grid;gap:14px}
 .mod{border:1px solid var(--line);border-radius:18px;overflow:hidden}
@@ -309,23 +306,23 @@ const SUBJECTS=[
   ]}]},
 
 { id:"ml", short:"Machine Learning", name:"Machine Learning", code:"CMCOR1PC301", tag:"ESEP · Practical",
-  kind:"ESEP practical · 30 marks", date:null, practical:true, channels:["sq","cx","kn","fme"],
+  kind:"ESEP practical · 30 marks", date:null, practical:true, slot:{date:"2026-12-09",start:"09:00",time:"9:00–11:00 am",at:"9 am",lab:"618 & 619"}, channels:["sq","cx","kn","fme"],
   hint:"You get one experiment to code and explain. Watch StatQuest for the idea, then CampusX or Krish Naik for the Python code, and make sure you can run it yourself.",
   modules:[
-  {title:"Foundations & Regression · Exp 1–3",topics:[
+  {title:"Foundations & Regression · Exp 1–3",due:"2026-12-02",topics:[
     {t:"ML basics: supervised, unsupervised, reinforcement; steps to build an ML application",q:"machine learning types supervised unsupervised"},
     {t:"Training vs generalization error, overfitting & underfitting, bias–variance trade-off",q:"bias variance overfitting underfitting",tip:"<b>Viva favourite.</b>"},
     {t:"Exp 1–2 · Simple & multiple linear regression",q:"linear regression python sklearn"},
     {t:"Exp 3 · Multivariate linear regression",q:"multivariate linear regression python"}
   ]},
-  {title:"Decision Trees & Ensembles · Exp 4–7",topics:[
+  {title:"Decision Trees & Ensembles · Exp 4–7",due:"2026-12-03",topics:[
     {t:"Exp 4 · Decision tree using Gini index",q:"decision tree gini index"},
     {t:"Exp 5 · CART for classification & regression",q:"CART classification and regression tree python"},
     {t:"Confusion matrix, kappa, sensitivity, specificity, precision, recall, F-measure, ROC & AUC",q:"confusion matrix precision recall ROC AUC",tip:"<b>Viva favourite.</b>"},
     {t:"Exp 6 · Ensembles: K-fold CV, bagging, boosting, stumping, XGBoost",q:"bagging boosting xgboost"},
     {t:"Exp 7 · Random forest",q:"random forest python"}
   ]},
-  {title:"Classification & Clustering · Exp 8–14",topics:[
+  {title:"Classification & Clustering · Exp 8–14",due:"2026-12-05",topics:[
     {t:"Exp 8 · Logistic regression",q:"logistic regression python"},
     {t:"Exp 9 · SVM: margins, linear & non-linear, kernel trick",q:"support vector machine kernel trick"},
     {t:"Exp 10 · Support vector regression",q:"support vector regression python"},
@@ -334,7 +331,7 @@ const SUBJECTS=[
     {t:"Exp 13 · Model-based clustering: Expectation-Maximization",q:"expectation maximization gaussian mixture"},
     {t:"Exp 14 · Density-based clustering: DBSCAN",q:"DBSCAN clustering python"}
   ]},
-  {title:"Dimensionality Reduction · Exp 15–18",topics:[
+  {title:"Dimensionality Reduction · Exp 15–18",due:"2026-12-05",topics:[
     {t:"Exp 15 · PCA",q:"PCA principal component analysis python"},
     {t:"Exp 16 · SVD",q:"singular value decomposition"},
     {t:"Exp 17 · LDA",q:"linear discriminant analysis"},
@@ -343,10 +340,10 @@ const SUBJECTS=[
   ]}]},
 
 { id:"nlp", short:"Natural Language Processing", name:"Natural Language Processing", code:"CMCOR1PE301.1", tag:"ESEP · Practical",
-  kind:"ESEP practical · 15 marks", date:null, practical:true, channels:["cb","kn","cx","fme"],
+  kind:"ESEP practical · 15 marks", date:null, practical:true, slot:{date:"2026-12-14",start:"13:00",time:"1:00–3:00 pm",at:"1 pm",lab:"623 & 624"}, channels:["cb","kn","cx","fme"],
   hint:"Every experiment is a short Python notebook (NLTK, spaCy, scikit-learn, Hugging Face). Watch the idea, then type the code once yourself. In the practical you'll be asked to run one and explain the output.",
   modules:[
-  {title:"Text Preprocessing & Features · Exp 1–6",topics:[
+  {title:"Text Preprocessing & Features · Exp 1–6",due:"2026-12-10",topics:[
     {t:"Exp 1 · Text cleaning",q:"NLP text cleaning python"},
     {t:"Exp 2 · Text normalization: stemming, lemmatization, spelling correction",q:"stemming vs lemmatization NLTK"},
     {t:"Exp 3 · Subword tokenization: BPE, WordPiece, SentencePiece",q:"BPE WordPiece subword tokenization"},
@@ -354,19 +351,19 @@ const SUBJECTS=[
     {t:"Exp 5 · Word embeddings: Word2Vec, GloVe, FastText",q:"word2vec glove fasttext"},
     {t:"Exp 6 · N-gram language model",q:"n-gram language model"}
   ]},
-  {title:"Syntax & Semantics · Exp 7–10",topics:[
+  {title:"Syntax & Semantics · Exp 7–10",due:"2026-12-11",topics:[
     {t:"Exp 7 · POS tagging: rule-based, statistical, neural",q:"POS tagging NLP"},
     {t:"Exp 8 · Dependency & constituency parsing",q:"dependency parsing constituency parsing spacy"},
     {t:"Exp 9 · Named Entity Recognition (NER)",q:"named entity recognition spacy"},
     {t:"Exp 10 · Feature engineering for NLP",q:"feature engineering NLP"}
   ]},
-  {title:"Classification & Analysis · Exp 11–14",topics:[
+  {title:"Classification & Analysis · Exp 11–14",due:"2026-12-12",topics:[
     {t:"Exp 11 · Text classification: Naive Bayes, Logistic Regression, SVM",q:"text classification naive bayes python"},
     {t:"Exp 12 · Sentiment analysis: ML-based & lexicon-based",q:"sentiment analysis python VADER"},
     {t:"Exp 13 · Topic modelling: LDA / NMF",q:"topic modeling LDA python"},
     {t:"Exp 14 · Information retrieval with the vector space model",q:"vector space model information retrieval cosine similarity"}
   ]},
-  {title:"Generation & Applications · Exp 15–19",topics:[
+  {title:"Generation & Applications · Exp 15–19",due:"2026-12-13",topics:[
     {t:"Exp 15 · Text summarization: extractive & abstractive",q:"text summarization extractive abstractive python"},
     {t:"Exp 16 · Machine translation: rule-based, statistical, neural",q:"machine translation NLP"},
     {t:"Exp 17 · Conversational agent (chatbot development)",q:"chatbot python NLP"},
@@ -375,45 +372,45 @@ const SUBJECTS=[
   ]}]},
 
 { id:"eh", short:"Ethical Hacking", name:"Ethical Hacking", code:"CMOR1PE302.3", tag:"ESEP · Practical",
-  kind:"ESEP practical · 15 marks", date:null, practical:true, channels:["nc","db","tcm","pce"],
+  kind:"ESEP practical · 15 marks", date:null, practical:true, slot:{date:"2026-12-08",start:"14:00",time:"2:00–4:00 pm",at:"2 pm",lab:"714 & 715"}, channels:["nc","db","tcm","pce"],
   hint:"Run every experiment against your own lab only (Kali + Metasploitable / DVWA in VirtualBox). In the practical, explain each tool's command and its output, and for the last two experiments the legal side too.",
   modules:[
-  {title:"Recon & Scanning · Exp 1–3, 10",topics:[
+  {title:"Recon & Scanning · Exp 1–3, 10",due:"2026-12-01",topics:[
     {t:"Exp 1 · Live host discovery & port enumeration with Nmap",q:"nmap tutorial host discovery port scan"},
     {t:"Exp 2 · Public Wi-Fi traffic interception & analysis with Wireshark",q:"wireshark tutorial packet analysis"},
     {t:"Exp 3 · Port scanning, service enumeration & vulnerability assessment",q:"service enumeration vulnerability scanning nmap scripts"},
     {t:"Exp 10 · Google Dorking for vulnerability discovery",q:"google dorking"}
   ]},
-  {title:"Web Attacks · Exp 4, 5, 9",topics:[
+  {title:"Web Attacks · Exp 4, 5, 9",due:"2026-12-02",topics:[
     {t:"Exp 4 · SQL injection on DVWA / Burp Suite",q:"SQL injection DVWA burp suite"},
     {t:"Exp 5 · Cross-Site Scripting (XSS)",q:"cross site scripting XSS DVWA"},
     {t:"Exp 9 · Web server hacking & exploitation",q:"web server hacking metasploitable"}
   ]},
-  {title:"System Attacks & Forensics · Exp 6–8",topics:[
+  {title:"System Attacks & Forensics · Exp 6–8",due:"2026-12-03",topics:[
     {t:"Exp 6 · Buffer overflow exploitation & analysis",q:"buffer overflow explained"},
     {t:"Exp 7 · Password cracking from hashes",q:"password cracking hashcat john the ripper"},
     {t:"Exp 8 · Windows registry analysis",q:"windows registry forensics"}
   ]},
-  {title:"Law & Incident Response · Exp 11–12",topics:[
+  {title:"Law & Incident Response · Exp 11–12",due:"2026-12-06",topics:[
     {t:"Exp 11 · Case study of cyber laws (IT Act 2000)",q:"IT Act 2000 cyber law India"},
     {t:"Exp 12 · Simulated incident response with legal & ethical considerations",q:"incident response process"}
   ]}]},
 
 { id:"bi", short:"Business Intelligence", name:"Business Intelligence Lab", code:"CMLOR1VS301", tag:"ESEP · Skill lab",
-  kind:"ESEP practical · 15 marks", date:null, practical:true, channels:["ata","cb","gic","kn"],
+  kind:"ESEP practical · 15 marks", date:null, practical:true, slot:{date:"2026-12-11",start:"13:00",time:"1:00–3:00 pm",at:"1 pm",lab:"618 & 619"}, channels:["ata","cb","gic","kn"],
   hint:"Half Tableau, half Power BI. Download a sample sales dataset and build each experiment along with the video. The practical asks you to build a dashboard live and explain your DAX or calculated fields.",
   modules:[
-  {title:"Tableau · Exp 1–3",topics:[
+  {title:"Tableau · Exp 1–3",due:"2026-12-06",topics:[
     {t:"Exp 1 · Connect Tableau to Excel, CSV & databases; data preparation",q:"Tableau data source connect excel csv data preparation"},
     {t:"Exp 2 · Basic & advanced Tableau visualizations, dashboard formatting & design",q:"Tableau dashboard tutorial"},
     {t:"Exp 3 · Calculated fields, table calculations, LOD expressions",q:"Tableau calculated fields LOD expressions"}
   ]},
-  {title:"Power BI Core · Exp 4–6",topics:[
+  {title:"Power BI Core · Exp 4–6",due:"2026-12-09",topics:[
     {t:"Exp 4 · Data integration from multiple sources with Power Query (transform & clean)",q:"Power BI Power Query tutorial"},
     {t:"Exp 5 · Fundamental & custom visuals: formatting, styling, marketplace visuals",q:"Power BI custom visuals formatting"},
     {t:"Exp 6 · Maps, treemaps, heatmaps & dual-axis charts",q:"Power BI heatmap treemap dual axis chart"}
   ]},
-  {title:"Power BI Advanced · Exp 7–10",topics:[
+  {title:"Power BI Advanced · Exp 7–10",due:"2026-12-10",topics:[
     {t:"Exp 7 · Dashboard best practices & data storytelling",q:"Power BI dashboard design best practices"},
     {t:"Exp 8 · DAX time intelligence (YTD, MTD, previous year)",q:"Power BI DAX time intelligence",tip:"<b>Viva favourite:</b> CALCULATE, TOTALYTD, SAMEPERIODLASTYEAR."},
     {t:"Exp 9 · End-to-end dashboard on a real dataset (sales, healthcare, finance or smart city)",q:"Power BI end to end project"},
@@ -434,15 +431,27 @@ const PLAN=[
  ["2026-11-27",[["Secure Computer Networking exam, 2 pm",1],["Evening: CD tables & 3AC revision"]]],
  ["2026-11-28",[["Compiler Design exam, 2 pm",1],["Evening: CN M4 · Transport & application"]]],
  ["2026-11-29",[["CN revision + numericals: Hamming, CRC, subnetting, routing"]]],
- ["2026-11-30",[["Computer Network exam, 2 pm",1],["After this: practicals. Set each practical's date in its panel."]]]
+ ["2026-11-30",[["Computer Network exam, 2 pm",1],["Theory done. Rest tonight."]]],
+ ["2026-12-01",[["EH G1 · Recon & scanning (Exp 1–3, 10)"]]],
+ ["2026-12-02",[["EH G2 · Web attacks (Exp 4, 5, 9)"],["ML G1 · Regression (Exp 1–3)"]]],
+ ["2026-12-03",[["EH G3 · System attacks & forensics (Exp 6–8)"],["ML G2 · Trees & ensembles (Exp 4–7)"]]],
+ ["2026-12-04",[["ML G3 · Classification (Exp 8–11)"]]],
+ ["2026-12-05",[["ML G3 · Clustering (Exp 12–14)"],["ML G4 · PCA / LDA (Exp 15–18)"]]],
+ ["2026-12-06",[["EH G4 · Law & incident response (Exp 11–12)"],["BI G1 · Tableau (Exp 1–3)"]]],
+ ["2026-12-07",[["EH dry run: every tool once on your Kali lab + viva questions"]]],
+ ["2026-12-08",[["Ethical Hacking practical, 2 pm · Lab 714 & 715",1],["Evening: run every ML notebook once"]]],
+ ["2026-12-09",[["Machine Learning practical, 9 am · Lab 618 & 619",1],["Afternoon: BI G2 · Power BI core (Exp 4–6)"]]],
+ ["2026-12-10",[["BI G3 · Power BI advanced, DAX (Exp 7–10)"],["NLP G1 · Preprocessing (Exp 1–6)"]]],
+ ["2026-12-11",[["Business Intelligence practical, 1 pm · Lab 618 & 619",1],["Evening: NLP G2 · Syntax & semantics (Exp 7–10)"]]],
+ ["2026-12-12",[["NLP G3 · Classification & analysis (Exp 11–14)"]]],
+ ["2026-12-13",[["NLP G4 · Generation (Exp 15–19)"],["Run every NLP notebook once"]]],
+ ["2026-12-14",[["NLP practical, 1 pm · Lab 623 & 624",1],["All exams done"]]]
 ];
 
 /* per-browser convenience storage */
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
              set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let done=store.get("semv-done",{});
-let pdates=store.get("semv-pdates",{});
-{const old=store.get("semv-ml-date",null); if(old&&!pdates.ml){pdates.ml=old}}
 
 const todayKey=()=>new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Kolkata"});
 const ymd=d=>new Date(d).toLocaleDateString("en-CA",{timeZone:"Asia/Kolkata"});
@@ -454,7 +463,9 @@ const PLAY='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1v8l7-4z" fi
 const ARROW='<svg class="arr" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 36 36 12M16 12h20v20"/></svg>';
 const CHEV='<svg class="chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 5 4 4 4-4"/></svg>';
 
-const sDate=s=>s.practical?(pdates[s.id]?pdates[s.id]+"T09:00:00"+IST:null):s.date;
+const sDate=s=>s.practical?s.slot.date+"T"+s.slot.start+":00"+IST:s.date;
+const tm=s=>s.practical?s.slot.time:"2:00–4:00 pm";
+const at=s=>s.practical?s.slot.at:"2 pm";
 const ids=s=>s.modules.flatMap((m,mi)=>m.topics.map((_,ti)=>`${s.id}-${mi}-${ti}`));
 const pct=s=>{const a=ids(s);return Math.round(a.filter(i=>done[i]).length/a.length*100)};
 function cd(date){
@@ -465,14 +476,10 @@ function cd(date){
   if(d===1) return {n:"1",u:"day left",lab:"Tomorrow",cls:"bad"};
   return {n:String(d),u:"days left",lab:`In ${d} days`,cls:d<=4?"warn":""};
 }
-function due(s,m,mi){
-  if(!s.practical) return m.due;
-  if(!pdates[s.id]) return null;
-  const b=new Date(pdates[s.id]+"T00:00:00Z"); b.setUTCDate(b.getUTCDate()-(s.modules.length-mi)); return b.toISOString().slice(0,10);
-}
+function due(s,m){return m.due||null}
 function dueSt(d,complete){
   if(complete) return {cls:"ok",txt:"Done"};
-  if(!d) return {cls:"",txt:"Set practical date"};
+  if(!d) return {cls:"",txt:"No deadline"};
   const x=dayDiff(d,todayKey());
   if(x<0) return {cls:"bad",txt:"Overdue"};
   if(x===0) return {cls:"warn",txt:"Finish today"};
@@ -498,8 +505,8 @@ function hero(){
         <div class="eyebrow"><span class="dot"></span>Next exam</div>
         ${next?`<div><div class="big num">${c.n}<small>${esc(c.u)}</small></div>
           <h3 style="margin-top:14px">${esc(next.name)}</h3>
-          <div class="eyebrow" style="margin-top:6px">${esc(fmt(sDate(next)))}${next.practical?"":" · 2:00–4:00 pm"} · ${esc(next.code)}</div></div>`
-          :`<h3>All dated exams are done. Set your practical dates below.</h3>`}
+          <div class="eyebrow" style="margin-top:6px">${esc(fmt(sDate(next)))} · ${esc(tm(next))}${next.practical?" · Lab "+esc(next.slot.lab):""}</div></div>`
+          :`<h3>All exams are done. Well played.</h3>`}
         <div class="trust"><span>Report 20 min early</span><span>No phones in the hall</span><span>Changes posted on the college site</span></div>
       </div>
       <div class="side">
@@ -514,11 +521,11 @@ function overview(){
   const list=ORDERED();
   return `<section class="panel light" id="papers">${bar(2,"All papers")}
     <div class="lead"><h2>${SUBJECTS.length} papers, ${SUBJECTS.reduce((n,s)=>n+ids(s).length,0)} topics</h2>
-      <p>Theory exams are fixed by the timetable. Practical dates aren't announced yet, so set each one in its panel and its module deadlines fill in.</p></div>
+      <p>Theory exams run 27–30 Nov at 2 pm. Practicals run 8–14 Dec for TYCM3 · Sr. 37–71, from the ESEP timetable dated 18 Nov 2026.</p></div>
     <div class="grid">${list.map(s=>{const d=sDate(s),c=cd(d),p=pct(s);
       return `<a class="card" href="#${s.id}">
         <div class="thumb"><div><div class="k">${esc(s.tag)}</div>
-          <div class="d num" style="margin-top:8px">${d?esc(fmt(d,{weekday:undefined,month:"short"})):"TBA"}<span>${d&&!s.practical?"2 pm":""}</span></div></div>
+          <div class="d num" style="margin-top:8px">${d?esc(fmt(d,{weekday:undefined,month:"short"})):"TBA"}<span>${d?esc(at(s)):""}</span></div></div>
           <div class="pg"><span class="meter"><i style="width:${p}%"></i></span><span class="num">${p}%</span></div></div>
         <div class="t"><span>${esc(s.short)}</span><span class="pill ${c.cls}">${esc(c.lab)}</span></div></a>`}).join("")}
     </div></section>`;
@@ -531,9 +538,8 @@ function subject(s,i,theme){
       <div style="display:grid;gap:14px"><div class="eyebrow"><span class="dot"></span>${esc(s.code)}</div><h2>${esc(s.name)}</h2>
         <div class="prog"><span class="meter"><i data-meter="${s.id}" style="width:${p}%"></i></span><span class="num" data-prog="${s.id}">${n}/${a.length} topics</span></div></div>
       <div class="facts"><div class="cd num">${c.n}<small>${esc(c.u)}</small></div>
-        <dl><dt>Exam</dt><dd>${d?esc(fmt(d,{weekday:"long",month:"long"}))+(s.practical?"":", 2:00–4:00 pm"):"Not announced yet"}</dd>
+        <dl><dt>Exam</dt><dd>${d?esc(fmt(d,{weekday:"long",month:"long"}))+", "+esc(tm(s)):"Not announced yet"}</dd>${s.practical?`<dt>Lab</dt><dd>${esc(s.slot.lab)}</dd><dt>Batch</dt><dd>TYCM3 · Sr. 37–71</dd>`:""}
           <dt>Type</dt><dd>${esc(s.kind)}</dd><dt>Portion</dt><dd>${s.practical?"Full experiment list + viva":"All "+s.modules.length+" modules"}</dd></dl>
-        ${s.practical?`<div class="dateset"><label class="eyebrow" for="pd-${s.id}">Practical date</label><input type="date" id="pd-${s.id}" data-pd="${s.id}" value="${pdates[s.id]||""}" min="2026-11-01" max="2027-01-31"></div>`:""}
       </div>
     </div>
     <div class="howto"><p>${esc(s.hint)}</p><div class="chs">${s.channels.map((ch,k)=>`<span class="pill ${k===0?"o":""}">${esc(CH[ch])}${k===0?" · start here":""}</span>`).join("")}</div></div>
@@ -557,7 +563,7 @@ function subject(s,i,theme){
 function plan(i,theme){
   const k=todayKey();
   return `<section class="panel ${theme}" id="plan">${bar(i,"Day by day")}
-    <div class="lead"><h2>18 Nov → 30 Nov</h2><p>Compiler Design comes first because its exam is the day after Honours. Honours and Computer Network share modules 1–3, so they're studied together on 22–24 Nov.</p></div>
+    <div class="lead"><h2>18 Nov → 14 Dec</h2><p>Compiler Design comes first because its exam is the day after Honours. Honours and Computer Network share modules 1–3, so they're studied together on 22–24 Nov. In December each practical is prepared in the days just before it: Hacking, then ML, BI and NLP.</p></div>
     <ul class="plan">${PLAN.map(([d,items])=>`<li class="${d===k?"now":d<k?"past":""}"><span class="dd">${esc(fmt(d+"T12:00:00"+IST))}</span>
       <span>${items.map(([t,ex])=>ex?`<span class="ex">${esc(t)}</span>`:esc(t)).join(" · ")}</span></li>`).join("")}</ul></section>`;
 }
@@ -569,7 +575,7 @@ function render(){
   order.forEach((s,k)=>{html+=subject(s,i++,k%2===0?"dark":"light")});
   html+=plan(i,"dark");
   html+=`<nav class="pager" id="pager" aria-label="Previous and next page"></nav>`;
-  html+=`<p class="foot">Built from your Sem V scheme (batch 2024–28) and the Cyber Security Honours scheme. Video buttons open that channel's YouTube results for the topic. Ticks and dates are saved in this browser only.</p>`;
+  html+=`<p class="foot">Built from your Sem V scheme (batch 2024–28) and the Cyber Security Honours scheme. Video buttons open that channel's YouTube results for the topic. Practical dates and labs are from the ESEP timetable dated 18 Nov 2026 (TYCM3 · Sr. 37–71). Ticks are saved in this browser only.</p>`;
   document.getElementById("page").innerHTML=html;
   renderNav();
   bind();
@@ -619,14 +625,9 @@ function bind(){
     const card=document.querySelector(`.card[href="#${sid}"]`);
     if(card){card.querySelector(".meter i").style.width=pct(s)+"%";card.querySelector(".pg .num").textContent=pct(s)+"%"}
   }));
-  document.querySelectorAll("input[data-pd]").forEach(inp=>inp.addEventListener("change",()=>{
-    if(inp.value) pdates[inp.dataset.pd]=inp.value; else delete pdates[inp.dataset.pd];
-    store.set("semv-pdates",pdates); render();
-  }));
 }
 
 render();
 </script>
-
 </body>
 </html>
