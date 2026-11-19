@@ -7,3 +7,4 @@ __pycache__/
 
 # working copy of the page (index.html is the published version)
 sem5-exam-board.html
+.claude/

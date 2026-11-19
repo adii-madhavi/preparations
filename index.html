@@ -107,6 +107,15 @@ button{font:inherit;color:inherit}
 .howto p{margin:0;font-size:.92rem;color:var(--fg)}
 .chs{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
 @media (max-width:720px){.chs{justify-content:flex-start}}
+.slotbig{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.slotbig>div{border:1px solid var(--line);border-radius:18px;padding:16px 20px 18px;display:grid;gap:8px;align-content:start;background:var(--raise)}
+.slotbig b{font-family:var(--display);font-weight:600;letter-spacing:-.04em;font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1}
+.slotbig .tm{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}
+.slotbig .tm .eyebrow{color:var(--orange-ink);opacity:.85}
+.heroslot{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:14px}
+.heroslot>span{display:grid;gap:4px}
+.heroslot b{font-family:var(--display);font-weight:600;letter-spacing:-.035em;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1}
+.heroslot .o{color:var(--orange)}
 
 .mods{display:grid;gap:14px}
 .mod{border:1px solid var(--line);border-radius:18px;overflow:hidden}
@@ -466,6 +475,7 @@ const CHEV='<svg class="chev" viewBox="0 0 14 14" fill="none" stroke="currentCol
 const sDate=s=>s.practical?s.slot.date+"T"+s.slot.start+":00"+IST:s.date;
 const tm=s=>s.practical?s.slot.time:"2:00–4:00 pm";
 const at=s=>s.practical?s.slot.at:"2 pm";
+const lab=s=>s.practical?s.slot.lab:null;
 const ids=s=>s.modules.flatMap((m,mi)=>m.topics.map((_,ti)=>`${s.id}-${mi}-${ti}`));
 const pct=s=>{const a=ids(s);return Math.round(a.filter(i=>done[i]).length/a.length*100)};
 function cd(date){
@@ -505,7 +515,8 @@ function hero(){
         <div class="eyebrow"><span class="dot"></span>Next exam</div>
         ${next?`<div><div class="big num">${c.n}<small>${esc(c.u)}</small></div>
           <h3 style="margin-top:14px">${esc(next.name)}</h3>
-          <div class="eyebrow" style="margin-top:6px">${esc(fmt(sDate(next)))} · ${esc(tm(next))}${next.practical?" · Lab "+esc(next.slot.lab):""}</div></div>`
+          <div class="heroslot"><span><span class="eyebrow">Date</span><b>${esc(fmt(sDate(next)))}</b></span><span><span class="eyebrow">Time</span><b class="o">${esc(tm(next))}</b></span>${lab(next)?`<span><span class="eyebrow">Lab</span><b>${esc(lab(next))}</b></span>`:""}</div>
+          <div class="eyebrow" style="margin-top:12px">${esc(next.code)}</div></div>`
           :`<h3>All exams are done. Well played.</h3>`}
         <div class="trust"><span>Report 20 min early</span><span>No phones in the hall</span><span>Changes posted on the college site</span></div>
       </div>
@@ -538,10 +549,11 @@ function subject(s,i,theme){
       <div style="display:grid;gap:14px"><div class="eyebrow"><span class="dot"></span>${esc(s.code)}</div><h2>${esc(s.name)}</h2>
         <div class="prog"><span class="meter"><i data-meter="${s.id}" style="width:${p}%"></i></span><span class="num" data-prog="${s.id}">${n}/${a.length} topics</span></div></div>
       <div class="facts"><div class="cd num">${c.n}<small>${esc(c.u)}</small></div>
-        <dl><dt>Exam</dt><dd>${d?esc(fmt(d,{weekday:"long",month:"long"}))+", "+esc(tm(s)):"Not announced yet"}</dd>${s.practical?`<dt>Lab</dt><dd>${esc(s.slot.lab)}</dd><dt>Batch</dt><dd>TYCM3 · Sr. 37–71</dd>`:""}
+        <dl><dt>Exam</dt><dd>${d?esc(fmt(d,{weekday:"long",month:"long"}))+", "+esc(tm(s)):"Not announced yet"}</dd>${s.practical?`<dt>Batch</dt><dd>TYCM3 · Sr. 37–71</dd>`:""}
           <dt>Type</dt><dd>${esc(s.kind)}</dd><dt>Portion</dt><dd>${s.practical?"Full experiment list + viva":"All "+s.modules.length+" modules"}</dd></dl>
       </div>
     </div>
+    ${d?`<div class="slotbig"><div><span class="eyebrow">Date</span><b>${esc(fmt(d))}</b></div><div class="tm"><span class="eyebrow">Time</span><b>${esc(tm(s))}</b></div>${lab(s)?`<div><span class="eyebrow">Lab</span><b>${esc(lab(s))}</b></div>`:""}</div>`:""}
     <div class="howto"><p>${esc(s.hint)}</p><div class="chs">${s.channels.map((ch,k)=>`<span class="pill ${k===0?"o":""}">${esc(CH[ch])}${k===0?" · start here":""}</span>`).join("")}</div></div>
     <div class="mods">${s.modules.map((m,mi)=>{
       const mid=m.topics.map((_,ti)=>`${s.id}-${mi}-${ti}`),k=mid.filter(x=>done[x]).length,st=dueSt(due(s,m,mi),k===mid.length);
