@@ -570,7 +570,7 @@ function plan(i,theme){
 
 function render(){
   const y=window.scrollY;
-  const order=["scn","cd","cn","ml","nlp","eh","bi"].map(id=>SUBJECTS.find(s=>s.id===id));
+  const order=ORDERED();
   let html=hero()+overview(), i=3;
   order.forEach((s,k)=>{html+=subject(s,i++,k%2===0?"dark":"light")});
   html+=plan(i,"dark");
@@ -583,7 +583,7 @@ function render(){
   window.scrollTo(0,y);
 }
 
-const PAGES=["top","papers","scn","cd","cn","ml","nlp","eh","bi","plan"];
+const PAGES=["top","papers",...ORDERED().map(s=>s.id),"plan"];
 const PAGENAMES={top:"Home",papers:"All papers",plan:"Day-by-day plan"};
 function route(keepScroll){
   const h=location.hash.slice(1), cur=PAGES.includes(h)?h:"top";
@@ -604,7 +604,7 @@ window.addEventListener("hashchange",()=>route(false));
 const NAVNAMES={scn:"Honours",cd:"Compiler",cn:"Network",ml:"ML",nlp:"NLP",eh:"Hacking",bi:"Power BI"};
 function renderNav(){
   const k=todayKey();
-  const items=[["top","Home"],["papers","All papers"],...["scn","cd","cn","ml","nlp","eh","bi"].map(id=>[id,NAVNAMES[id]]),["plan","Plan"]];
+  const items=[["top","Home"],["papers","All papers"],...ORDERED().map(s=>[s.id,NAVNAMES[s.id]]),["plan","Plan"]];
   document.getElementById("navlinks").innerHTML=items.map(([id,label])=>{
     const s=SUBJECTS.find(x=>x.id===id); let when="",soon=false;
     if(s){const d=sDate(s); if(d){const x=dayDiff(ymd(d),k); when=x<0?"✓":x===0?"today":x+"d"; soon=x>=0&&x<=4}else when="TBA"}
